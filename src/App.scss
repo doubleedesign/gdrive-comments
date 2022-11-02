@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+
+$colours: (
+	'success': #4caf50,
+	'info':  #4a148c,
+	'warning': #fdd835,
+	'alert': #d81b60,
+	'dark': #12005e
+);
+
+* {
+	margin: 0;
+	padding: 0;
+	font-family: 'Poppins', Arial, sans-serif;
+	box-sizing: border-box;
+	font-weight: 300;
+}
+
+.App {
+	background: #f6f6f6;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: center;
+	height: 100vh;
+	overflow: hidden;
+}
+
+h2 {
+	font-size: 1.2rem;
+	font-weight: 600;
+	margin-bottom: 0.5rem;
+}
+
+p {
+	margin: 1rem 0;
+	font-size: 0.8rem;
+
+	strong {
+		font-weight: 600;
+	}
+}
+
+.button {
+	border: 0;
+	appearance: none;
+	padding: 0.5rem 1rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	border-radius: 0.25rem;
+	text-decoration: underline;
+	text-decoration-color: transparent;
+
+	&:hover, &:focus, &:active {
+		text-decoration-color: currentColor;
+	}
+
+	&--navigation {
+		background: map-get($colours, 'dark');
+		color: white;
+
+		&:hover, &:focus, &:active {
+			background: darken(map-get($colours, 'dark'), 10%);
+		}
+	}
+
+	&--action {
+		background: map-get($colours, 'info');
+		color: white;
+
+		&:hover, &:focus, &:active {
+			background: darken(map-get($colours, 'info'), 15%);
+		}
+	}
+}
+
+.alert {
+	margin: 1rem 0;
+	padding: 0.5rem;
+	background: white;
+	font-size: 0.8rem;
+	font-weight:  600;
+
+	@each $colour, $value in $colours {
+		&--#{$colour} {
+			border: 1px solid $value;
+			border-left-width: 0.5rem;
+			color: $value;
+		}
+	}
+}
+
+.document-wrapper {
+	width: 1190px;
+	flex-basis: 1190px;
+	padding-top: 2rem;
+	position: relative;
+
+	.react-pdf__Document,
+	.comment-layer {
+		width: 1192px;
+		height: 842px; // hack
+	}
+
+	.react-pdf__Document {
+		border: 1px solid #CCC;
+	}
+
+	.comment-layer {
+		position: absolute;
+		top: 2rem;
+		left: 0;
+		right: 0;
+	}
+
+	.pagination {
+		width: 100%;
+		padding: 0.5rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		&__description {
+			order: 1;
+			padding: 0 1rem;
+			font-size: 0.8rem;
+		}
+
+		button {
+			width: 100px;
+
+			&:first-child {
+				order: 0;
+			}
+
+			&:last-child {
+				order: 2;
+			}
+		}
+	}
+}
+
+.comments-wrapper {
+	width: 400px;
+	flex-basis: 400px;
+	padding: 2rem;
+	overflow-y: auto;
+
+	.comments {
+		list-style: none;
+		margin-bottom: 2rem;
+
+		&__item {
+			display: flex;
+			width: 100%;
+			align-items: center;
+			font-size: 0.8rem;
+			background: white;
+			padding: 0.5rem;
+			border-left: 0.5rem solid rgba(map-get($colours, 'warning'),0.6);
+			margin-bottom: 0.25rem;
+
+			.button {
+				opacity: 0.3;
+			}
+
+			&:hover {
+				border-left-color: map-get($colours, 'warning');
+
+				.button {
+					opacity: 1;
+				}
+			}
+
+			&__0 {
+				border-left-color: map-get($colours, 'alert');
+				box-shadow: 0 0 0.25rem 0 #ccc;
+				transform: scale(1.1);
+
+				.button {
+					opacity: 1;
+				}
+
+				&:hover {
+					border-left-color: map-get($colours, 'alert');
+				}
+			}
+
+			&__description {
+				width: 80%;
+				flex-basis: 80%;
+				padding-right: 1rem;
+
+				small {
+					display: block;
+				}
+			}
+		}
+	}
+}
+
+.loading-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(black, 0.6);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	p {
+		font-size: 1.5rem;
+		color: map-get($colours, 'info');
+		font-weight: 600;
+	}
+}
