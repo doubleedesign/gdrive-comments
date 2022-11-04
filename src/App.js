@@ -382,6 +382,15 @@ function App() {
 				</div>
 			</div>
 			<div className="comments-wrapper">
+				<div className="status">
+					<h2>Resolution progress</h2>
+					<div className="status__progress-bar">
+						<span style={{width: `${((comments.length - unresolved.length) / comments.length) * 100}%`}}>
+							{Math.round(((comments.length - unresolved.length) / comments.length) * 100)}%
+						</span>
+					</div>
+					<p>There are <strong>{unresolved.length}</strong> unresolved comments.</p>
+				</div>
 				<h2>Comments on this spread</h2>
 				<p>There are <strong>{currentPageComments.length}</strong> unresolved comments on this spread.</p>
 				{currentPageComments && currentPageComments.length > 0 ?
