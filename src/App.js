@@ -382,6 +382,7 @@ function App() {
 				</div>
 			</div>
 			<div className="comments-wrapper">
+				{statusMessage && <div className="loading-overlay"><p>{statusMessage}</p></div>}
 				<div className="status">
 					<h2>Resolution progress</h2>
 					<div className="status__progress-bar">
@@ -418,7 +419,6 @@ function App() {
 					);
 				})}
 			</div>
-			{statusMessage && <div className="loading-overlay"><p>{statusMessage}</p></div>}
 		</div>
 	);
 }

@@ -184,6 +184,7 @@ p {
 	flex-basis: 400px;
 	padding: 2rem;
 	overflow-y: auto;
+	position: relative;
 
 	.comments {
 		list-style: none;
@@ -239,7 +240,7 @@ p {
 }
 
 .loading-overlay {
-	position: fixed;
+	position: absolute;
 	top: 0;
 	left: 0;
 	right: 0;
@@ -248,10 +249,12 @@ p {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	z-index: 200;
 
 	p {
 		font-size: 1.5rem;
 		color: map-get($colours, 'info');
 		font-weight: 600;
+		text-align: center;
 	}
 }
